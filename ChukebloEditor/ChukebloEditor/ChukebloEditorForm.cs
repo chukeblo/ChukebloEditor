@@ -32,6 +32,13 @@ namespace ChukebloEditor
             }
         }
 
+        private void FileMenuOverwriteButton_Click(object sender, EventArgs e)
+        {
+            var param = new FileIOParam(CurrentlyOpenedFileName.Text, TextBox.Text);
+            var command = CommandFactory.GenerateCommand(CommandType.Save, param);
+            _commandInvoker.AddCommand(command);
+        }
+
         private void FileMenuSaveButton_Click(object sender, EventArgs e)
         {
             var dialog = new SaveFileDialog();
@@ -117,11 +124,6 @@ namespace ChukebloEditor
             linedTextList.RemoveAt(cursoredLine);
             TextBox.Text = string.Join(Environment.NewLine, linedTextList);
             TextBox.SelectionStart = nextCursor;
-        }
-
-        private void FileMenuOverwriteButton_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
