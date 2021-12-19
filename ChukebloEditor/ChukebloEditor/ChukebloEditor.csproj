@@ -52,8 +52,18 @@
     <Compile Include="ChukebloEditorForm.Designer.cs">
       <DependentUpon>ChukebloEditorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CommandFactory.cs" />
+    <Compile Include="CommandInvoker.cs" />
+    <Compile Include="CommandType.cs" />
+    <Compile Include="ICommand.cs" />
+    <Compile Include="ICommandReceiver.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReceiverFactory.cs" />
+    <Compile Include="ReceiverType.cs" />
+    <Compile Include="SaveCommand.cs" />
+    <Compile Include="SaveCommandReceiver.cs" />
+    <Compile Include="FileIOParam.cs" />
     <EmbeddedResource Include="ChukebloEditorForm.resx">
       <DependentUpon>ChukebloEditorForm.cs</DependentUpon>
     </EmbeddedResource>

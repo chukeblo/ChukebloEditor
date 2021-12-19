@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChukebloEditor.Command;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -6,12 +7,17 @@ using System.Windows.Forms;
 
 namespace ChukebloEditor
 {
+    // UIイベント関連の処理はこのファイルにまとめる
     public partial class ChukebloEditorForm : Form
     {
+        private CommandInvoker _commandInvoker;
         private Stack<string> CopySentenceStack = new Stack<string>();
+        
         public ChukebloEditorForm()
         {
             InitializeComponent();
+            _commandInvoker = new CommandInvoker();
+            _commandInvoker.Run();
         }
 
         private void FileMenuOpenButton_Click(object sender, EventArgs e)
@@ -26,7 +32,6 @@ namespace ChukebloEditor
             }
         }
 
-
         private void FileMenuSaveButton_Click(object sender, EventArgs e)
         {
             var dialog = new SaveFileDialog();
@@ -34,7 +39,9 @@ namespace ChukebloEditor
             dialog.Title = "保存";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                File.WriteAllText(dialog.FileName, TextBox.Text);
+                var param = new FileIOParam(dialog.FileName, TextBox.Text);
+                var command = CommandFactory.GenerateCommand(CommandType.Save, param);
+                _commandInvoker.AddCommand(command);
             }
         }
 
@@ -110,6 +117,11 @@ namespace ChukebloEditor
             linedTextList.RemoveAt(cursoredLine);
             TextBox.Text = string.Join(Environment.NewLine, linedTextList);
             TextBox.SelectionStart = nextCursor;
+        }
+
+        private void FileMenuOverwriteButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
