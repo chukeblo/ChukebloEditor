@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace ChukebloEditor
@@ -91,6 +92,24 @@ namespace ChukebloEditor
             var newText = tmp.Remove(TextBox.SelectionStart, TextBox.SelectionLength);
             TextBox.Text = newText;
             TextBox.SelectionStart = selectionStart;
+        }
+
+        private void EditMenuCutLineButton_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(TextBox.Text))
+            {
+                // すでに空の場合何もしない
+                return;
+            }
+
+            var cursoredLine = TextBox.GetLineFromCharIndex(TextBox.SelectionStart);
+            // 1行目を行削除しようとするとエラーが吐かれるのでセーフティを設ける
+            var nextCursor = TextBox.GetFirstCharIndexFromLine(cursoredLine > 0 ? cursoredLine - 1 : 0);
+
+            var linedTextList = TextBox.Lines.ToList();
+            linedTextList.RemoveAt(cursoredLine);
+            TextBox.Text = string.Join(Environment.NewLine, linedTextList);
+            TextBox.SelectionStart = nextCursor;
         }
     }
 }
