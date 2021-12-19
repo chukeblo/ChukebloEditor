@@ -37,13 +37,14 @@ namespace ChukebloEditor
             this.FileMenuSaveButton = new System.Windows.Forms.ToolStripMenuItem();
             this.FileMenuExitButton = new System.Windows.Forms.ToolStripMenuItem();
             this.EditMenuBarButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditMenuSelectAllButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditMenuCutButton = new System.Windows.Forms.ToolStripMenuItem();
             this.EditMenuCopyButton = new System.Windows.Forms.ToolStripMenuItem();
             this.EditMenuPasteButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.EditMenuSelectAllButton = new System.Windows.Forms.ToolStripMenuItem();
             this.StatusBar = new System.Windows.Forms.StatusStrip();
             this.CurrentlyOpenedFileName = new System.Windows.Forms.ToolStripStatusLabel();
             this.TextBox = new System.Windows.Forms.TextBox();
-            this.EditMenuCutButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditMenuCutLineButton = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.StatusBar.SuspendLayout();
             this.SuspendLayout();
@@ -118,17 +119,34 @@ namespace ChukebloEditor
             this.EditMenuBarButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.EditMenuSelectAllButton,
             this.EditMenuCutButton,
+            this.EditMenuCutLineButton,
             this.EditMenuCopyButton,
             this.EditMenuPasteButton});
             this.EditMenuBarButton.Name = "EditMenuBarButton";
             this.EditMenuBarButton.Size = new System.Drawing.Size(53, 24);
             this.EditMenuBarButton.Text = "編集";
             // 
+            // EditMenuSelectAllButton
+            // 
+            this.EditMenuSelectAllButton.Name = "EditMenuSelectAllButton";
+            this.EditMenuSelectAllButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
+            this.EditMenuSelectAllButton.Size = new System.Drawing.Size(273, 26);
+            this.EditMenuSelectAllButton.Text = "すべて選択";
+            this.EditMenuSelectAllButton.Click += new System.EventHandler(this.EditMenuSelectAllButton_Click);
+            // 
+            // EditMenuCutButton
+            // 
+            this.EditMenuCutButton.Name = "EditMenuCutButton";
+            this.EditMenuCutButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+            this.EditMenuCutButton.Size = new System.Drawing.Size(273, 26);
+            this.EditMenuCutButton.Text = "切り取り";
+            this.EditMenuCutButton.Click += new System.EventHandler(this.EditMenuCutButton_Click);
+            // 
             // EditMenuCopyButton
             // 
             this.EditMenuCopyButton.Name = "EditMenuCopyButton";
             this.EditMenuCopyButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.EditMenuCopyButton.Size = new System.Drawing.Size(224, 26);
+            this.EditMenuCopyButton.Size = new System.Drawing.Size(273, 26);
             this.EditMenuCopyButton.Text = "コピー";
             this.EditMenuCopyButton.Click += new System.EventHandler(this.EditMenuCopyButton_Click);
             // 
@@ -136,17 +154,9 @@ namespace ChukebloEditor
             // 
             this.EditMenuPasteButton.Name = "EditMenuPasteButton";
             this.EditMenuPasteButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.EditMenuPasteButton.Size = new System.Drawing.Size(224, 26);
+            this.EditMenuPasteButton.Size = new System.Drawing.Size(273, 26);
             this.EditMenuPasteButton.Text = "ペースト";
             this.EditMenuPasteButton.Click += new System.EventHandler(this.EditMenuPasteButton_Click);
-            // 
-            // EditMenuSelectAllButton
-            // 
-            this.EditMenuSelectAllButton.Name = "EditMenuSelectAllButton";
-            this.EditMenuSelectAllButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.EditMenuSelectAllButton.Size = new System.Drawing.Size(224, 26);
-            this.EditMenuSelectAllButton.Text = "すべて選択";
-            this.EditMenuSelectAllButton.Click += new System.EventHandler(this.EditMenuSelectAllButton_Click);
             // 
             // StatusBar
             // 
@@ -162,7 +172,7 @@ namespace ChukebloEditor
             // CurrentlyOpenedFileName
             // 
             this.CurrentlyOpenedFileName.Name = "CurrentlyOpenedFileName";
-            this.CurrentlyOpenedFileName.Size = new System.Drawing.Size(0, 18);
+            this.CurrentlyOpenedFileName.Size = new System.Drawing.Size(0, 16);
             // 
             // TextBox
             // 
@@ -174,13 +184,13 @@ namespace ChukebloEditor
             this.TextBox.Size = new System.Drawing.Size(1199, 603);
             this.TextBox.TabIndex = 4;
             // 
-            // EditMenuCutButton
+            // EditMenuCutLineButton
             // 
-            this.EditMenuCutButton.Name = "EditMenuCutButton";
-            this.EditMenuCutButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.EditMenuCutButton.Size = new System.Drawing.Size(224, 26);
-            this.EditMenuCutButton.Text = "切り取り";
-            this.EditMenuCutButton.Click += new System.EventHandler(this.EditMenuCutButton_Click);
+            this.EditMenuCutLineButton.Name = "EditMenuCutLineButton";
+            this.EditMenuCutLineButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.Delete)));
+            this.EditMenuCutLineButton.Size = new System.Drawing.Size(273, 26);
+            this.EditMenuCutLineButton.Text = "カーソル行切り取り";
+            this.EditMenuCutLineButton.Click += new System.EventHandler(this.EditMenuCutLineButton_Click);
             // 
             // ChukebloEditorForm
             // 
@@ -219,6 +229,7 @@ namespace ChukebloEditor
         private System.Windows.Forms.ToolStripStatusLabel CurrentlyOpenedFileName;
         private System.Windows.Forms.TextBox TextBox;
         private System.Windows.Forms.ToolStripMenuItem EditMenuCutButton;
+        private System.Windows.Forms.ToolStripMenuItem EditMenuCutLineButton;
     }
 }
 
