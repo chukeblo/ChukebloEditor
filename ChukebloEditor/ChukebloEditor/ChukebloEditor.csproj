@@ -46,10 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChukebloEditorForm.cs">
+    <Compile Include="UI\ChukebloEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChukebloEditorForm.Designer.cs">
+    <Compile Include="UI\ChukebloEditorForm.Designer.cs">
       <DependentUpon>ChukebloEditorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Command\CommandFactory.cs" />
@@ -64,7 +64,7 @@
     <Compile Include="Command\SaveCommand.cs" />
     <Compile Include="CommandReceiver\SaveCommandReceiver.cs" />
     <Compile Include="Command\FileIOParam.cs" />
-    <EmbeddedResource Include="ChukebloEditorForm.resx">
+    <EmbeddedResource Include="UI\ChukebloEditorForm.resx">
       <DependentUpon>ChukebloEditorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
