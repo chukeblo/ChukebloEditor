@@ -1,6 +1,4 @@
-﻿using System.Windows.Forms;
-
-namespace ChukebloEditor.Command
+﻿namespace ChukebloEditor.Command
 {
     public class FileIOParam
     {

@@ -68,6 +68,8 @@
     <Compile Include="Command\SaveCommand.cs" />
     <Compile Include="CommandReceiver\SaveCommandReceiver.cs" />
     <Compile Include="Command\FileIOParam.cs" />
+    <Compile Include="UI\DialogConstants.cs" />
+    <Compile Include="UI\MessageBoxConstants.cs" />
     <Compile Include="UI\SearchWindow.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -22,8 +22,7 @@ namespace ChukebloEditor.UI
         // Find/Relace用データ
         private List<int> _matchedStringIndexList = new List<int>();
         private int _searchWordsLength = 0;
-        
-        
+
         public ChukebloEditorForm()
         {
             InitializeComponent();
@@ -44,14 +43,25 @@ namespace ChukebloEditor.UI
         {
             if (TextBox.Text != string.Empty)
             {
-                var result = MessageBox.Show("保存されていないテキストは削除されますがよろしいですか？", "新規作成", MessageBoxButtons.YesNo);
+                // 現在編集済みのファイルが未保存の場合はポップアップ表示する
+                var result = MessageBox.Show(MessageBoxConstants.CreateNewFileMessage,
+                    MessageBoxConstants.CreateNewFileCaption, MessageBoxButtons.YesNo);
                 if (result == DialogResult.No)
                 {
                     return;
                 }
             }
-            TextBox.Text = string.Empty;
-            CurrentlyOpenedFileName.Text = string.Empty;
+            var dialog = new SaveFileDialog();
+            dialog.Filter = DialogConstants.TextFileFilter;
+            dialog.Title = DialogConstants.CreateNewFileTitle;
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                TextBox.Text = string.Empty;
+                CurrentlyOpenedFileName.Text = dialog.FileName;
+                var param = new FileIOParam(dialog.FileName, string.Empty);
+                var command = CommandFactory.GenerateCommand(CommandType.Save, param);
+                _commandInvoker.AddCommand(command);
+            }
         }
 
         /// <summary>
@@ -62,8 +72,8 @@ namespace ChukebloEditor.UI
         private void FileMenuOpenButton_Click(object sender, EventArgs e)
         {
             var dialog = new OpenFileDialog();
-            dialog.Filter = "テキストファイル(*.txt)|*.txt";
-            dialog.Title = "開く";
+            dialog.Filter = DialogConstants.TextFileFilter;
+            dialog.Title = DialogConstants.OpenFileTitle;
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 TextBox.Text = File.ReadAllText(dialog.FileName);
@@ -78,6 +88,12 @@ namespace ChukebloEditor.UI
         /// <param name="e"></param>
         private void FileMenuOverwriteButton_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(CurrentlyOpenedFileName.Text))
+            {
+                // 現在開いているファイル名がない場合は新規保存イベントのフローに移行
+                FileMenuSaveButton_Click(sender, e);
+                return;
+            }
             var param = new FileIOParam(CurrentlyOpenedFileName.Text, TextBox.Text);
             var command = CommandFactory.GenerateCommand(CommandType.Save, param);
             _commandInvoker.AddCommand(command);
@@ -91,14 +107,16 @@ namespace ChukebloEditor.UI
         private void FileMenuSaveButton_Click(object sender, EventArgs e)
         {
             var dialog = new SaveFileDialog();
-            dialog.Filter = "テキストファイル(*.txt)|*.txt";
-            dialog.Title = "保存";
-            if (dialog.ShowDialog() == DialogResult.OK)
+            dialog.Filter = DialogConstants.TextFileFilter;
+            dialog.Title = DialogConstants.SaveAsNewFileTitle;
+            if (dialog.ShowDialog() == DialogResult.Cancel)
             {
-                var param = new FileIOParam(dialog.FileName, TextBox.Text);
-                var command = CommandFactory.GenerateCommand(CommandType.Save, param);
-                _commandInvoker.AddCommand(command);
+                return;
             }
+            CurrentlyOpenedFileName.Text = dialog.FileName;
+            var param = new FileIOParam(dialog.FileName, TextBox.Text);
+            var command = CommandFactory.GenerateCommand(CommandType.Save, param);
+            _commandInvoker.AddCommand(command);
         }
 
         /// <summary>
@@ -108,7 +126,8 @@ namespace ChukebloEditor.UI
         /// <param name="e"></param>
         private void FileMenuExitButton_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("ChukebloEditorを終了しますか？", "終了", MessageBoxButtons.YesNo);
+            var result = MessageBox.Show(MessageBoxConstants.ExitMessage,
+                MessageBoxConstants.ExitCaption, MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
                 Close();
@@ -155,6 +174,7 @@ namespace ChukebloEditor.UI
                 return;
             }
 
+            // TODO: 文字列を削除する処理はコマンドで行うように修正する
             var cursoredLine = TextBox.GetLineFromCharIndex(TextBox.SelectionStart);
             // 1行目を行削除しようとするとエラーが吐かれるのでセーフティを設ける
             var nextCursor = TextBox.GetFirstCharIndexFromLine(cursoredLine > 0 ? cursoredLine - 1 : 0);
