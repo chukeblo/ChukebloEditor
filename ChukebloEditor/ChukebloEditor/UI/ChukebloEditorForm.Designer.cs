@@ -83,7 +83,7 @@ namespace ChukebloEditor.UI
             this.FileMenuCreateNewButton.Name = "FileMenuCreateNewButton";
             this.FileMenuCreateNewButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
             this.FileMenuCreateNewButton.Size = new System.Drawing.Size(291, 26);
-            this.FileMenuCreateNewButton.Text = "新規作成";
+            this.FileMenuCreateNewButton.Text = "新規ファイル作成";
             this.FileMenuCreateNewButton.Click += new System.EventHandler(this.FileMenuCreateNewButton_Click);
             // 
             // FileMenuOpenButton
@@ -151,8 +151,9 @@ namespace ChukebloEditor.UI
             // EditMenuCutLineButton
             // 
             this.EditMenuCutLineButton.Name = "EditMenuCutLineButton";
-            this.EditMenuCutLineButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.Delete)));
-            this.EditMenuCutLineButton.Size = new System.Drawing.Size(273, 26);
+            this.EditMenuCutLineButton.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.X)));
+            this.EditMenuCutLineButton.Size = new System.Drawing.Size(292, 26);
             this.EditMenuCutLineButton.Text = "カーソル行切り取り";
             this.EditMenuCutLineButton.Click += new System.EventHandler(this.EditMenuCutLineButton_Click);
             // 

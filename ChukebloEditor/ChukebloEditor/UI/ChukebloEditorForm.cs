@@ -33,47 +33,13 @@ namespace ChukebloEditor.UI
             _commandInvoker.Run();
         }
 
-        private void FileMenuOpenButton_Click(object sender, EventArgs e)
-        {
-            var dialog = new OpenFileDialog();
-            dialog.Filter = "テキストファイル(*.txt)|*.txt";
-            dialog.Title = "開く";
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                TextBox.Text = File.ReadAllText(dialog.FileName);
-                CurrentlyOpenedFileName.Text = dialog.FileName;
-            }
-        }
+        // ファイルメニュータブにあるボタン押下イベントのリスナーメソッド
 
-        private void FileMenuOverwriteButton_Click(object sender, EventArgs e)
-        {
-            var param = new FileIOParam(CurrentlyOpenedFileName.Text, TextBox.Text);
-            var command = CommandFactory.GenerateCommand(CommandType.Save, param);
-            _commandInvoker.AddCommand(command);
-        }
-
-        private void FileMenuSaveButton_Click(object sender, EventArgs e)
-        {
-            var dialog = new SaveFileDialog();
-            dialog.Filter = "テキストファイル(*.txt)|*.txt";
-            dialog.Title = "保存";
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                var param = new FileIOParam(dialog.FileName, TextBox.Text);
-                var command = CommandFactory.GenerateCommand(CommandType.Save, param);
-                _commandInvoker.AddCommand(command);
-            }
-        }
-
-        private void FileMenuExitButton_Click(object sender, EventArgs e)
-        {
-            var result = MessageBox.Show("ChukebloEditorを終了しますか？", "終了", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
-            {
-                Close();
-            }
-        }
-
+        /// <summary>
+        /// 「新規ファイル作成」ボタン押下イベントのリスナーメソッド
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FileMenuCreateNewButton_Click(object sender, EventArgs e)
         {
             if (TextBox.Text != string.Empty)
@@ -88,29 +54,84 @@ namespace ChukebloEditor.UI
             CurrentlyOpenedFileName.Text = string.Empty;
         }
 
-        private void EditMenuCopyButton_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 「ファイルを開く」ボタン押下イベントのリスナーメソッド
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FileMenuOpenButton_Click(object sender, EventArgs e)
         {
-            CopySentenceStack.Push(TextBox.SelectedText);
-        }
-
-        private void EditMenuPasteButton_Click(object sender, EventArgs e)
-        {
-            if (CopySentenceStack.Count == 0)
+            var dialog = new OpenFileDialog();
+            dialog.Filter = "テキストファイル(*.txt)|*.txt";
+            dialog.Title = "開く";
+            if (dialog.ShowDialog() == DialogResult.OK)
             {
-                return;
+                TextBox.Text = File.ReadAllText(dialog.FileName);
+                CurrentlyOpenedFileName.Text = dialog.FileName;
             }
-            var pasteStartIndex = TextBox.SelectionStart;
-            var lastCopiedSentence = CopySentenceStack.Pop();
-            var newText = TextBox.Text.Insert(pasteStartIndex, lastCopiedSentence);
-            TextBox.Text = newText;
-            TextBox.SelectionStart = pasteStartIndex + lastCopiedSentence.Length;
         }
 
+        /// <summary>
+        /// 「上書き保存」ボタン押下イベントのリスナーメソッド
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FileMenuOverwriteButton_Click(object sender, EventArgs e)
+        {
+            var param = new FileIOParam(CurrentlyOpenedFileName.Text, TextBox.Text);
+            var command = CommandFactory.GenerateCommand(CommandType.Save, param);
+            _commandInvoker.AddCommand(command);
+        }
+
+        /// <summary>
+        /// 「新規保存」ボタン押下イベントのリスナーメソッド
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FileMenuSaveButton_Click(object sender, EventArgs e)
+        {
+            var dialog = new SaveFileDialog();
+            dialog.Filter = "テキストファイル(*.txt)|*.txt";
+            dialog.Title = "保存";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                var param = new FileIOParam(dialog.FileName, TextBox.Text);
+                var command = CommandFactory.GenerateCommand(CommandType.Save, param);
+                _commandInvoker.AddCommand(command);
+            }
+        }
+
+        /// <summary>
+        /// 「終了」ボタン押下イベントのリスナーメソッド
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FileMenuExitButton_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("ChukebloEditorを終了しますか？", "終了", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                Close();
+            }
+        }
+
+        // 編集メニュータブにあるボタン押下イベントのリスナーメソッド
+
+        /// <summary>
+        /// 「すべて選択」ボタン押下イベントのリスナーメソッド
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EditMenuSelectAllButton_Click(object sender, EventArgs e)
         {
             TextBox.SelectAll();
         }
 
+        /// <summary>
+        /// 「切り取り」ボタン押下イベントのリスナーメソッド
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EditMenuCutButton_Click(object sender, EventArgs e)
         {
             CopySentenceStack.Push(TextBox.SelectedText);
@@ -121,6 +142,11 @@ namespace ChukebloEditor.UI
             TextBox.SelectionStart = selectionStart;
         }
 
+        /// <summary>
+        /// 「カーソル行切り取り」ボタン押下イベントのリスナーメソッド
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EditMenuCutLineButton_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(TextBox.Text))
@@ -139,6 +165,39 @@ namespace ChukebloEditor.UI
             TextBox.SelectionStart = nextCursor;
         }
 
+        /// <summary>
+        /// 「コピー」ボタン押下イベントのリスナーメソッド
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EditMenuCopyButton_Click(object sender, EventArgs e)
+        {
+            CopySentenceStack.Push(TextBox.SelectedText);
+        }
+
+        /// <summary>
+        /// 「ペースト」ボタン押下イベントのリスナーメソッド
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EditMenuPasteButton_Click(object sender, EventArgs e)
+        {
+            if (CopySentenceStack.Count == 0)
+            {
+                return;
+            }
+            var pasteStartIndex = TextBox.SelectionStart;
+            var lastCopiedSentence = CopySentenceStack.Pop();
+            var newText = TextBox.Text.Insert(pasteStartIndex, lastCopiedSentence);
+            TextBox.Text = newText;
+            TextBox.SelectionStart = pasteStartIndex + lastCopiedSentence.Length;
+        }
+
+        /// <summary>
+        /// 「検索」ボタン押下イベントのリスナーメソッド
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void EditMenuFindButton_Click(object sender, EventArgs e)
         {
             // TODO: 連続して検索機能が呼ばれたときの対応
@@ -162,6 +221,14 @@ namespace ChukebloEditor.UI
             }
         }
 
+
+        /// <summary>
+        /// 検索完了イベントのリスナーメソッド
+        /// UIスレッドでUIコントロールを行う必要があるため、HighlightSelectedWordsメソッドに
+        /// 具体的な処理は移譲している
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void FindCommandReceiver_OnFindCompleted(object sender, FindCompletedEventArgs e)
         {
             _matchedStringIndexList = e.IndexList;
@@ -172,6 +239,11 @@ namespace ChukebloEditor.UI
             }
         }
 
+        /// <summary>
+        /// 検索で該当した文字列をハイライトを行う
+        /// </summary>
+        /// <param name="index">該当部分の先頭インデックス</param>
+        /// <param name="length">検索文字列の長さ</param>
         private void HighlightSelectedWords(int index, int length)
         {
             // TODO: 連続してハイライト解除機能が呼ばれたときの対応
@@ -180,6 +252,13 @@ namespace ChukebloEditor.UI
             TextBox.SelectionColor = Color.Red;
         }
 
+        // 表示メニュータブにあるボタン押下イベントのリスナーメソッド
+
+        /// <summary>
+        /// 「ハイライト解除」ボタン押下イベントのリスナーメソッド
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DisplayMenuUnhighlightButton_Click(object sender, EventArgs e)
         {
             foreach (var index in _matchedStringIndexList)
