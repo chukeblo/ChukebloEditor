@@ -10,6 +10,8 @@ namespace ChukebloEditor.CommandReceiver
             {
                 case ReceiverType.Save:
                     return new SaveCommandReceiver(parameter);
+                case ReceiverType.Find:
+                    return new FindCommandReceiver(parameter);
                 default:
                     throw new InvalidOperationException("not supported receiver type");
             }

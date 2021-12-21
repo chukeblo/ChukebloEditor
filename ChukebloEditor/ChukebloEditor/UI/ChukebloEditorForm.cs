@@ -1,22 +1,35 @@
 ﻿using ChukebloEditor.Command;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace ChukebloEditor
+namespace ChukebloEditor.UI
 {
+    delegate void HighlightSelectedWordsDelegate(int index, int length);
     // UIイベント関連の処理はこのファイルにまとめる
     public partial class ChukebloEditorForm : Form
     {
+        // UIコントロール用デリゲート
+        private readonly HighlightSelectedWordsDelegate _highlightSelectedWordsDelegate;
+
         private CommandInvoker _commandInvoker;
+        private SearchWindow _searchWindow;
+        // Copy/Cut/Paste用データ
         private Stack<string> CopySentenceStack = new Stack<string>();
+        // Find/Relace用データ
+        private List<int> _matchedStringIndexList = new List<int>();
+        private int _searchWordsLength = 0;
+        
         
         public ChukebloEditorForm()
         {
             InitializeComponent();
+            _highlightSelectedWordsDelegate = HighlightSelectedWords;
             _commandInvoker = new CommandInvoker();
+            _searchWindow = new SearchWindow();
             _commandInvoker.Run();
         }
 
@@ -124,6 +137,57 @@ namespace ChukebloEditor
             linedTextList.RemoveAt(cursoredLine);
             TextBox.Text = string.Join(Environment.NewLine, linedTextList);
             TextBox.SelectionStart = nextCursor;
+        }
+
+        private async void EditMenuFindButton_Click(object sender, EventArgs e)
+        {
+            // TODO: 連続して検索機能が呼ばれたときの対応
+            _searchWindow.Show();
+            try
+            {
+                var searchWords = await _searchWindow.WaitSearchWords();
+                var param = new SearchParam(TextBox.Text, searchWords);
+                param.OnFindCompleted += FindCommandReceiver_OnFindCompleted;
+                var command = CommandFactory.GenerateCommand(CommandType.Find, param);
+                _commandInvoker.AddCommand(command);
+            }
+            catch (OperationCanceledException)
+            {
+                // 検索がキャンセルされた場合にここに来るのは想定内
+            }
+            finally
+            {
+                _searchWindow.Clear();
+                _searchWindow.Hide();
+            }
+        }
+
+        public void FindCommandReceiver_OnFindCompleted(object sender, FindCompletedEventArgs e)
+        {
+            _matchedStringIndexList = e.IndexList;
+            _searchWordsLength = e.SearchWordsLength;
+            foreach (var index in _matchedStringIndexList)
+            {
+                Invoke(_highlightSelectedWordsDelegate, new object[] { index, _searchWordsLength });
+            }
+        }
+
+        private void HighlightSelectedWords(int index, int length)
+        {
+            // TODO: 連続してハイライト解除機能が呼ばれたときの対応
+            TextBox.SelectionStart = index;
+            TextBox.SelectionLength = length;
+            TextBox.SelectionColor = Color.Red;
+        }
+
+        private void DisplayMenuUnhighlightButton_Click(object sender, EventArgs e)
+        {
+            foreach (var index in _matchedStringIndexList)
+            {
+                TextBox.SelectionStart = index;
+                TextBox.SelectionLength = _searchWordsLength;
+                TextBox.SelectionColor = Color.Empty;
+            }
         }
     }
 }

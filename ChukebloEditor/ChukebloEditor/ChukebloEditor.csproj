@@ -46,6 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandReceiver\FindCommandReceiver.cs" />
+    <Compile Include="Command\FindCommand.cs" />
+    <Compile Include="Command\FindCompletedEventArgs.cs" />
+    <Compile Include="Command\SearchParam.cs" />
     <Compile Include="UI\ChukebloEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +68,12 @@
     <Compile Include="Command\SaveCommand.cs" />
     <Compile Include="CommandReceiver\SaveCommandReceiver.cs" />
     <Compile Include="Command\FileIOParam.cs" />
+    <Compile Include="UI\SearchWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\SearchWindow.Designer.cs">
+      <DependentUpon>SearchWindow.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="UI\ChukebloEditorForm.resx">
       <DependentUpon>ChukebloEditorForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -76,6 +86,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UI\SearchWindow.resx">
+      <DependentUpon>SearchWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
