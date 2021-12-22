@@ -1,5 +1,5 @@
 ﻿
-namespace ChukebloEditor
+namespace ChukebloEditor.UI
 {
     partial class ChukebloEditorForm
     {
@@ -39,12 +39,15 @@ namespace ChukebloEditor
             this.EditMenuBarButton = new System.Windows.Forms.ToolStripMenuItem();
             this.EditMenuSelectAllButton = new System.Windows.Forms.ToolStripMenuItem();
             this.EditMenuCutButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditMenuCutLineButton = new System.Windows.Forms.ToolStripMenuItem();
             this.EditMenuCopyButton = new System.Windows.Forms.ToolStripMenuItem();
             this.EditMenuPasteButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditMenuFindButton = new System.Windows.Forms.ToolStripMenuItem();
             this.StatusBar = new System.Windows.Forms.StatusStrip();
             this.CurrentlyOpenedFileName = new System.Windows.Forms.ToolStripStatusLabel();
-            this.TextBox = new System.Windows.Forms.TextBox();
-            this.EditMenuCutLineButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.TextBox = new System.Windows.Forms.RichTextBox();
+            this.DisplayMenuBarButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.DisplayMenuUnhighlightButton = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.StatusBar.SuspendLayout();
             this.SuspendLayout();
@@ -54,7 +57,8 @@ namespace ChukebloEditor
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileMenuBarButton,
-            this.EditMenuBarButton});
+            this.EditMenuBarButton,
+            this.DisplayMenuBarButton});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1199, 28);
@@ -79,7 +83,7 @@ namespace ChukebloEditor
             this.FileMenuCreateNewButton.Name = "FileMenuCreateNewButton";
             this.FileMenuCreateNewButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
             this.FileMenuCreateNewButton.Size = new System.Drawing.Size(291, 26);
-            this.FileMenuCreateNewButton.Text = "新規作成";
+            this.FileMenuCreateNewButton.Text = "新規ファイル作成";
             this.FileMenuCreateNewButton.Click += new System.EventHandler(this.FileMenuCreateNewButton_Click);
             // 
             // FileMenuOpenButton
@@ -96,6 +100,7 @@ namespace ChukebloEditor
             this.FileMenuOverwriteButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.FileMenuOverwriteButton.Size = new System.Drawing.Size(291, 26);
             this.FileMenuOverwriteButton.Text = "上書き保存";
+            this.FileMenuOverwriteButton.Click += new System.EventHandler(this.FileMenuOverwriteButton_Click);
             // 
             // FileMenuSaveButton
             // 
@@ -121,7 +126,8 @@ namespace ChukebloEditor
             this.EditMenuCutButton,
             this.EditMenuCutLineButton,
             this.EditMenuCopyButton,
-            this.EditMenuPasteButton});
+            this.EditMenuPasteButton,
+            this.EditMenuFindButton});
             this.EditMenuBarButton.Name = "EditMenuBarButton";
             this.EditMenuBarButton.Size = new System.Drawing.Size(53, 24);
             this.EditMenuBarButton.Text = "編集";
@@ -142,6 +148,15 @@ namespace ChukebloEditor
             this.EditMenuCutButton.Text = "切り取り";
             this.EditMenuCutButton.Click += new System.EventHandler(this.EditMenuCutButton_Click);
             // 
+            // EditMenuCutLineButton
+            // 
+            this.EditMenuCutLineButton.Name = "EditMenuCutLineButton";
+            this.EditMenuCutLineButton.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.X)));
+            this.EditMenuCutLineButton.Size = new System.Drawing.Size(292, 26);
+            this.EditMenuCutLineButton.Text = "カーソル行切り取り";
+            this.EditMenuCutLineButton.Click += new System.EventHandler(this.EditMenuCutLineButton_Click);
+            // 
             // EditMenuCopyButton
             // 
             this.EditMenuCopyButton.Name = "EditMenuCopyButton";
@@ -157,6 +172,14 @@ namespace ChukebloEditor
             this.EditMenuPasteButton.Size = new System.Drawing.Size(273, 26);
             this.EditMenuPasteButton.Text = "ペースト";
             this.EditMenuPasteButton.Click += new System.EventHandler(this.EditMenuPasteButton_Click);
+            // 
+            // EditMenuFindButton
+            // 
+            this.EditMenuFindButton.Name = "EditMenuFindButton";
+            this.EditMenuFindButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
+            this.EditMenuFindButton.Size = new System.Drawing.Size(273, 26);
+            this.EditMenuFindButton.Text = "検索";
+            this.EditMenuFindButton.Click += new System.EventHandler(this.EditMenuFindButton_Click);
             // 
             // StatusBar
             // 
@@ -176,21 +199,29 @@ namespace ChukebloEditor
             // 
             // TextBox
             // 
+            this.TextBox.AcceptsTab = true;
             this.TextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextBox.Location = new System.Drawing.Point(0, 28);
-            this.TextBox.Multiline = true;
             this.TextBox.Name = "TextBox";
-            this.TextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.TextBox.Size = new System.Drawing.Size(1199, 603);
             this.TextBox.TabIndex = 4;
+            this.TextBox.Text = "";
             // 
-            // EditMenuCutLineButton
+            // DisplayMenuBarButton
             // 
-            this.EditMenuCutLineButton.Name = "EditMenuCutLineButton";
-            this.EditMenuCutLineButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.Delete)));
-            this.EditMenuCutLineButton.Size = new System.Drawing.Size(273, 26);
-            this.EditMenuCutLineButton.Text = "カーソル行切り取り";
-            this.EditMenuCutLineButton.Click += new System.EventHandler(this.EditMenuCutLineButton_Click);
+            this.DisplayMenuBarButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DisplayMenuUnhighlightButton});
+            this.DisplayMenuBarButton.Name = "DisplayMenuBarButton";
+            this.DisplayMenuBarButton.Size = new System.Drawing.Size(53, 24);
+            this.DisplayMenuBarButton.Text = "表示";
+            // 
+            // DisplayMenuUnhighlightButton
+            // 
+            this.DisplayMenuUnhighlightButton.Name = "DisplayMenuUnhighlightButton";
+            this.DisplayMenuUnhighlightButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
+            this.DisplayMenuUnhighlightButton.Size = new System.Drawing.Size(228, 26);
+            this.DisplayMenuUnhighlightButton.Text = "ハイライト解除";
+            this.DisplayMenuUnhighlightButton.Click += new System.EventHandler(this.DisplayMenuUnhighlightButton_Click);
             // 
             // ChukebloEditorForm
             // 
@@ -227,9 +258,12 @@ namespace ChukebloEditor
         private System.Windows.Forms.ToolStripMenuItem EditMenuSelectAllButton;
         private System.Windows.Forms.StatusStrip StatusBar;
         private System.Windows.Forms.ToolStripStatusLabel CurrentlyOpenedFileName;
-        private System.Windows.Forms.TextBox TextBox;
         private System.Windows.Forms.ToolStripMenuItem EditMenuCutButton;
         private System.Windows.Forms.ToolStripMenuItem EditMenuCutLineButton;
+        private System.Windows.Forms.ToolStripMenuItem EditMenuFindButton;
+        private System.Windows.Forms.RichTextBox TextBox;
+        private System.Windows.Forms.ToolStripMenuItem DisplayMenuBarButton;
+        private System.Windows.Forms.ToolStripMenuItem DisplayMenuUnhighlightButton;
     }
 }
 

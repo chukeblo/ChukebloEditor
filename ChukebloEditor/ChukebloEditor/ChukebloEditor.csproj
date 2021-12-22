@@ -46,15 +46,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChukebloEditorForm.cs">
+    <Compile Include="CommandReceiver\FindCommandReceiver.cs" />
+    <Compile Include="Command\FindCommand.cs" />
+    <Compile Include="Command\FindCompletedEventArgs.cs" />
+    <Compile Include="Command\SearchParam.cs" />
+    <Compile Include="UI\ChukebloEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChukebloEditorForm.Designer.cs">
+    <Compile Include="UI\ChukebloEditorForm.Designer.cs">
       <DependentUpon>ChukebloEditorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Command\CommandFactory.cs" />
+    <Compile Include="Command\CommandInvoker.cs" />
+    <Compile Include="Command\CommandType.cs" />
+    <Compile Include="Command\ICommand.cs" />
+    <Compile Include="CommandReceiver\ICommandReceiver.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ChukebloEditorForm.resx">
+    <Compile Include="CommandReceiver\ReceiverFactory.cs" />
+    <Compile Include="CommandReceiver\ReceiverType.cs" />
+    <Compile Include="Command\SaveCommand.cs" />
+    <Compile Include="CommandReceiver\SaveCommandReceiver.cs" />
+    <Compile Include="Command\FileIOParam.cs" />
+    <Compile Include="UI\DialogConstants.cs" />
+    <Compile Include="UI\MessageBoxConstants.cs" />
+    <Compile Include="UI\SearchWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\SearchWindow.Designer.cs">
+      <DependentUpon>SearchWindow.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="UI\ChukebloEditorForm.resx">
       <DependentUpon>ChukebloEditorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -66,6 +88,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UI\SearchWindow.resx">
+      <DependentUpon>SearchWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
