@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace ChukebloEditor.UI
 {
-    delegate void InitializeSubmenuStateDelegate();
+    delegate void ShowTargetSubmenuDelegate();
     public partial class MPMainWindow : Form
     {
         private ToolMenuType currentToolMenuType = ToolMenuType.Idle;
@@ -17,7 +18,7 @@ namespace ChukebloEditor.UI
 
         private void InitializeSubmenuState()
         {
-            pnlTextEditorMenu.Visible = false;
+            InitializeTESubmenuState();
             pnlToDoListMenu.Visible = false;
             pnlTaskManagementMenu.Visible = false;
             pnlConfigurationMenu.Visible = false;
@@ -25,10 +26,7 @@ namespace ChukebloEditor.UI
 
         private void HideSubmenu()
         {
-            if (pnlTextEditorMenu.Visible)
-            {
-                pnlTextEditorMenu.Visible = false;
-            }
+            HideTESubmenuButtons();
             if (pnlToDoListMenu.Visible)
             {
                 pnlToDoListMenu.Visible = false;
@@ -45,51 +43,47 @@ namespace ChukebloEditor.UI
 
         private void ShowSubmenu(ToolMenuType type)
         {
-            Panel targetPanel;
-            InitializeSubmenuStateDelegate initializeSubmenuStateDelegate = null;
+            HideSubmenu();
+
             switch (type)
             {
                 case ToolMenuType.TextEditor:
-                    targetPanel = pnlTextEditorMenu;
-                    initializeSubmenuStateDelegate = InitializeTESubmenuState;
+                    ShowTESubmenuButtons();
                     break;
                 case ToolMenuType.ToDoList:
-                    targetPanel = pnlToDoListMenu;
+                    pnlToDoListMenu.Visible = true;
                     break;
                 case ToolMenuType.TaskManagement:
-                    targetPanel = pnlTaskManagementMenu;
+                    pnlTaskManagementMenu.Visible = true;
                     break;
                 case ToolMenuType.Configuration:
-                    targetPanel = pnlConfigurationMenu;
+                    pnlConfigurationMenu.Visible = true;
+                    break;
+                case ToolMenuType.Help:
                     break;
                 default:
                     throw new InvalidOperationException("not supported tool menu type");
             }
-
-            if (targetPanel.Visible)
-            {
-                targetPanel.Visible = false;
-                return;
-            }
-            HideSubmenu();
-            targetPanel.Visible = true;
-            initializeSubmenuStateDelegate?.Invoke();
         }
 
         public void SwitchActiveBodyMainForm(ToolMenuType nextType, Form nextForm)
         {
-            if (currentToolMenuType == nextType)
-            {
-                if (!ConfigureDeactivateBodyMainForm())
-                {
-                    return;
-                }
-                DeactivateBodyMainForm();
-                return;
-            }
             if (currentlyActiveForm != null)
             {
+                // すでにアクティブなウィンドウがある場合
+                if (!ConfigureDeactivateBodyMainForm())
+                {
+                    // ユーザーがウィンドウを閉じない選択をした場合は何もしない
+                    return;
+                }
+                bool onlyDeactivate = currentToolMenuType == nextType;
                 DeactivateBodyMainForm();
+                InitializeSubmenuState();
+                if (onlyDeactivate)
+                {
+                    // 現在アクティブなウィンドウと同じメニューボタンが押された場合はウィンドウを閉じるだけで抜ける
+                    return;
+                }
             }
             ActivateBodyMainForm(nextForm);
             ShowSubmenu(nextType);
@@ -126,6 +120,25 @@ namespace ChukebloEditor.UI
             currentToolMenuType = ToolMenuType.Idle;
         }
 
+        private Stack<Button> CreateButtonListUntil(Panel panel)
+        {
+            var list = new Stack<Button>();
+
+            list.Push(btnTextEditorMenu);
+            list.Push(btnTEFileSubmenu);
+            if (panel == pnlTEFileSubmenu)
+            {
+                return list;
+            }
+            list.Push(btnTEEditSubmenu);
+            if (panel == pnlTEEditSubmenu)
+            {
+                return list;
+            }
+            list.Push(btnTEDisplaySubmenu);
+            return list;
+        }
+
         #region Event Listeners
         #region Menu Button Click Events
         private void btnTextEditorMenu_Click(object sender, EventArgs e)
@@ -141,17 +154,17 @@ namespace ChukebloEditor.UI
 
         private void btnTaskManagementMenu_Click(object sender, EventArgs e)
         {
-            SwitchActiveBodyMainForm(ToolMenuType.ToDoList, new Form());
+            SwitchActiveBodyMainForm(ToolMenuType.TaskManagement, new Form());
         }
 
         private void btnConfigurationMenu_Click(object sender, EventArgs e)
         {
-            SwitchActiveBodyMainForm(ToolMenuType.ToDoList, new Form());
+            SwitchActiveBodyMainForm(ToolMenuType.Configuration, new Form());
         }
 
         private void btnHelpMenu_Click(object sender, EventArgs e)
         {
-            SwitchActiveBodyMainForm(ToolMenuType.ToDoList, new Form());
+            SwitchActiveBodyMainForm(ToolMenuType.Help, new Form());
         }
         #endregion Menu Button Click Events
         #region Submenu Button Click Events

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace ChukebloEditor.UI
@@ -7,53 +8,67 @@ namespace ChukebloEditor.UI
     {
         private void InitializeTESubmenuState()
         {
+            HideTESubmenuPanels();
+            HideTESubmenuButtons();
+        }
+
+        private void HideTESubmenuPanels()
+        {
             pnlTEFileSubmenu.Visible = false;
             pnlTEEditSubmenu.Visible = false;
             pnlTEDisplaySubmenu.Visible = false;
         }
 
-        private void HideTESubmenu()
+        private void ShowTESubmenuButtons()
         {
-            if (pnlTEFileSubmenu.Visible)
-            {
-                pnlTEFileSubmenu.Visible = false;
-            }
-            if (pnlTEEditSubmenu.Visible)
-            {
-                pnlTEEditSubmenu.Visible = false;
-            }
-            if (pnlTEDisplaySubmenu.Visible)
-            {
-                pnlTEDisplaySubmenu.Visible = false;
-            }
+            btnTEDisplaySubmenu.Visible = true;
+            btnTEEditSubmenu.Visible = true;
+            btnTEFileSubmenu.Visible = true;
+        }
+
+        private void HideTESubmenuButtons()
+        {
+            btnTEFileSubmenu.Visible = false;
+            btnTEEditSubmenu.Visible = false;
+            btnTEDisplaySubmenu.Visible = false;
         }
 
         #region Event Listeners
         #region Menu Button Click Events
-        private void ShowTESubmenu(Panel submenu)
+        private void ShowTESubmenuPanel(Panel targetPanel)
         {
-            if (submenu.Visible)
+            if (targetPanel.Visible)
             {
-                submenu.Visible = false;
+                targetPanel.Visible = false;
                 return;
             }
-            HideSubmenu();
-            submenu.Visible = true;
+            HideTESubmenuPanels();
+            HideTESubmenuButtons();
+
+            ShowTESubmenuButtons();
+            targetPanel.Visible = true;
+            targetPanel.SendToBack();
+            // TODO: とりあえずべた書きした描画調整処理なので要検討
+            var list = CreateButtonListUntil(targetPanel);
+            while (list.Count != 0)
+            {
+                list.Pop().SendToBack();
+            }
         }
 
         private void btnTEFileSubmenu_Click(object sender, EventArgs e)
         {
-            ShowTESubmenu(pnlTEFileSubmenu);
+            ShowTESubmenuPanel(pnlTEFileSubmenu);
         }
 
         private void btnTEEditSubmenu_Click(object sender, EventArgs e)
         {
-            ShowTESubmenu(pnlTEEditSubmenu);
+            ShowTESubmenuPanel(pnlTEEditSubmenu);
         }
 
         private void btnTEDisplaySubmenu_Click(object sender, EventArgs e)
         {
-            ShowTESubmenu(pnlTEDisplaySubmenu);
+            ShowTESubmenuPanel(pnlTEDisplaySubmenu);
         }
 
         #endregion Menu Button Click Events
@@ -64,7 +79,7 @@ namespace ChukebloEditor.UI
             // some operation code
             // ..
 
-            HideTESubmenu();
+            HideTESubmenuPanels();
         }
 
         private void btnTEFileOpenFileSubmenu_Click(object sender, EventArgs e)
@@ -72,7 +87,7 @@ namespace ChukebloEditor.UI
             // some operation code
             // ..
 
-            HideTESubmenu();
+            HideTESubmenuPanels();
         }
 
         private void btnTEFileOpenFolderSubmenu_Click(object sender, EventArgs e)
@@ -80,7 +95,7 @@ namespace ChukebloEditor.UI
             // some operation code
             // ..
 
-            HideTESubmenu();
+            HideTESubmenuPanels();
         }
 
         private void btnTEFileSaveSubmenu_Click(object sender, EventArgs e)
@@ -88,7 +103,7 @@ namespace ChukebloEditor.UI
             // some operation code
             // ..
 
-            HideTESubmenu();
+            HideTESubmenuPanels();
         }
 
         private void btnTEFileSaveAsSubmenu_Click(object sender, EventArgs e)
@@ -96,7 +111,7 @@ namespace ChukebloEditor.UI
             // some operation code
             // ..
 
-            HideTESubmenu();
+            HideTESubmenuPanels();
         }
         #endregion File Submenu
         #region Edit Submenu
@@ -105,7 +120,7 @@ namespace ChukebloEditor.UI
             // some operation code
             // ..
 
-            HideTESubmenu();
+            HideTESubmenuPanels();
         }
 
         private void btnTEEditCutSubmenu_Click(object sender, EventArgs e)
@@ -113,7 +128,7 @@ namespace ChukebloEditor.UI
             // some operation code
             // ..
 
-            HideTESubmenu();
+            HideTESubmenuPanels();
         }
 
         private void btnTEEditLineCutSubmenu_Click(object sender, EventArgs e)
@@ -121,7 +136,7 @@ namespace ChukebloEditor.UI
             // some operation code
             // ..
 
-            HideTESubmenu();
+            HideTESubmenuPanels();
         }
 
         private void btnTEEditCopySubmenu_Click(object sender, EventArgs e)
@@ -129,7 +144,7 @@ namespace ChukebloEditor.UI
             // some operation code
             // ..
 
-            HideTESubmenu();
+            HideTESubmenuPanels();
         }
 
         private void btnTEEditLineCopySubmenu_Click(object sender, EventArgs e)
@@ -137,7 +152,7 @@ namespace ChukebloEditor.UI
             // some operation code
             // ..
 
-            HideTESubmenu();
+            HideTESubmenuPanels();
         }
 
         private void btnTEEditPasteSubmenu_Click(object sender, EventArgs e)
@@ -145,7 +160,7 @@ namespace ChukebloEditor.UI
             // some operation code
             // ..
 
-            HideTESubmenu();
+            HideTESubmenuPanels();
         }
 
         private void btnTEEditFindSubmenu_Click(object sender, EventArgs e)
@@ -153,7 +168,7 @@ namespace ChukebloEditor.UI
             // some operation code
             // ..
 
-            HideTESubmenu();
+            HideTESubmenuPanels();
         }
         #endregion Edit Submenu
         #region Display Submenu
@@ -162,7 +177,7 @@ namespace ChukebloEditor.UI
             // some operation code
             // ..
 
-            HideTESubmenu();
+            HideTESubmenuPanels();
         }
 
         private void btnTEEditEnableConsole_Click(object sender, EventArgs e)
@@ -170,7 +185,7 @@ namespace ChukebloEditor.UI
             // some operation code
             // ..
 
-            HideTESubmenu();
+            HideTESubmenuPanels();
         }
         #endregion Display Submenu
         #endregion Submenu Button Click Events

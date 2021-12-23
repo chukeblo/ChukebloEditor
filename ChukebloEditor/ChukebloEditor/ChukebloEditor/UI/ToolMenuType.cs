@@ -6,6 +6,7 @@
         TextEditor,
         ToDoList,
         TaskManagement,
-        Configuration
+        Configuration,
+        Help
     }
 }

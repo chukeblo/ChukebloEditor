@@ -45,7 +45,6 @@
             this.btnToDoListRemoveItemSubmenu = new System.Windows.Forms.Button();
             this.btnToDoListAddItemSubmenu = new System.Windows.Forms.Button();
             this.btnTodoMenu = new System.Windows.Forms.Button();
-            this.pnlTextEditorMenu = new System.Windows.Forms.Panel();
             this.pnlTEDisplaySubmenu = new System.Windows.Forms.Panel();
             this.btnTEEditEnableConsole = new System.Windows.Forms.Button();
             this.btnTEDisplayDisableTextHighlightSubmenu = new System.Windows.Forms.Button();
@@ -65,7 +64,7 @@
             this.btnTEFileOpenFolderSubmenu = new System.Windows.Forms.Button();
             this.btnTEFileOpenFileSubmenu = new System.Windows.Forms.Button();
             this.btnTEFileCreateNewFileSubmenu = new System.Windows.Forms.Button();
-            this.btnTextEditorOpenFileSubmenu = new System.Windows.Forms.Button();
+            this.btnTEFileSubmenu = new System.Windows.Forms.Button();
             this.btnTextEditorMenu = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.BodyMainPanel = new System.Windows.Forms.Panel();
@@ -73,7 +72,6 @@
             this.pnlConfigurationMenu.SuspendLayout();
             this.pnlTaskManagementMenu.SuspendLayout();
             this.pnlToDoListMenu.SuspendLayout();
-            this.pnlTextEditorMenu.SuspendLayout();
             this.pnlTEDisplaySubmenu.SuspendLayout();
             this.pnlTEEditSubmenu.SuspendLayout();
             this.pnlTEFileSubmenu.SuspendLayout();
@@ -90,7 +88,12 @@
             this.pnlSideBar.Controls.Add(this.btnTaskManagementMenu);
             this.pnlSideBar.Controls.Add(this.pnlToDoListMenu);
             this.pnlSideBar.Controls.Add(this.btnTodoMenu);
-            this.pnlSideBar.Controls.Add(this.pnlTextEditorMenu);
+            this.pnlSideBar.Controls.Add(this.pnlTEDisplaySubmenu);
+            this.pnlSideBar.Controls.Add(this.btnTEDisplaySubmenu);
+            this.pnlSideBar.Controls.Add(this.pnlTEEditSubmenu);
+            this.pnlSideBar.Controls.Add(this.btnTEEditSubmenu);
+            this.pnlSideBar.Controls.Add(this.pnlTEFileSubmenu);
+            this.pnlSideBar.Controls.Add(this.btnTEFileSubmenu);
             this.pnlSideBar.Controls.Add(this.btnTextEditorMenu);
             this.pnlSideBar.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlSideBar.Location = new System.Drawing.Point(0, 0);
@@ -385,29 +388,13 @@
             this.btnTodoMenu.UseVisualStyleBackColor = false;
             this.btnTodoMenu.Click += new System.EventHandler(this.btnTodoMenu_Click);
             // 
-            // pnlTextEditorMenu
-            // 
-            this.pnlTextEditorMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.pnlTextEditorMenu.Controls.Add(this.pnlTEDisplaySubmenu);
-            this.pnlTextEditorMenu.Controls.Add(this.btnTEDisplaySubmenu);
-            this.pnlTextEditorMenu.Controls.Add(this.pnlTEEditSubmenu);
-            this.pnlTextEditorMenu.Controls.Add(this.btnTEEditSubmenu);
-            this.pnlTextEditorMenu.Controls.Add(this.pnlTEFileSubmenu);
-            this.pnlTextEditorMenu.Controls.Add(this.btnTextEditorOpenFileSubmenu);
-            this.pnlTextEditorMenu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlTextEditorMenu.Location = new System.Drawing.Point(0, 73);
-            this.pnlTextEditorMenu.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.pnlTextEditorMenu.Name = "pnlTextEditorMenu";
-            this.pnlTextEditorMenu.Size = new System.Drawing.Size(275, 1084);
-            this.pnlTextEditorMenu.TabIndex = 2;
-            // 
             // pnlTEDisplaySubmenu
             // 
             this.pnlTEDisplaySubmenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.pnlTEDisplaySubmenu.Controls.Add(this.btnTEEditEnableConsole);
             this.pnlTEDisplaySubmenu.Controls.Add(this.btnTEDisplayDisableTextHighlightSubmenu);
             this.pnlTEDisplaySubmenu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlTEDisplaySubmenu.Location = new System.Drawing.Point(0, 954);
+            this.pnlTEDisplaySubmenu.Location = new System.Drawing.Point(0, 1027);
             this.pnlTEDisplaySubmenu.Name = "pnlTEDisplaySubmenu";
             this.pnlTEDisplaySubmenu.Size = new System.Drawing.Size(275, 130);
             this.pnlTEDisplaySubmenu.TabIndex = 7;
@@ -458,7 +445,7 @@
             this.btnTEDisplaySubmenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTEDisplaySubmenu.Font = new System.Drawing.Font("MS Reference Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTEDisplaySubmenu.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.btnTEDisplaySubmenu.Location = new System.Drawing.Point(0, 891);
+            this.btnTEDisplaySubmenu.Location = new System.Drawing.Point(0, 964);
             this.btnTEDisplaySubmenu.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnTEDisplaySubmenu.Name = "btnTEDisplaySubmenu";
             this.btnTEDisplaySubmenu.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
@@ -480,7 +467,7 @@
             this.pnlTEEditSubmenu.Controls.Add(this.btnTEEditCutSubmenu);
             this.pnlTEEditSubmenu.Controls.Add(this.btnTEEditSelectAllSubmenu);
             this.pnlTEEditSubmenu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlTEEditSubmenu.Location = new System.Drawing.Point(0, 445);
+            this.pnlTEEditSubmenu.Location = new System.Drawing.Point(0, 518);
             this.pnlTEEditSubmenu.Name = "pnlTEEditSubmenu";
             this.pnlTEEditSubmenu.Size = new System.Drawing.Size(275, 446);
             this.pnlTEEditSubmenu.TabIndex = 5;
@@ -626,7 +613,7 @@
             this.btnTEEditSubmenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTEEditSubmenu.Font = new System.Drawing.Font("MS Reference Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTEEditSubmenu.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.btnTEEditSubmenu.Location = new System.Drawing.Point(0, 382);
+            this.btnTEEditSubmenu.Location = new System.Drawing.Point(0, 455);
             this.btnTEEditSubmenu.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnTEEditSubmenu.Name = "btnTEEditSubmenu";
             this.btnTEEditSubmenu.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
@@ -646,7 +633,7 @@
             this.pnlTEFileSubmenu.Controls.Add(this.btnTEFileOpenFileSubmenu);
             this.pnlTEFileSubmenu.Controls.Add(this.btnTEFileCreateNewFileSubmenu);
             this.pnlTEFileSubmenu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlTEFileSubmenu.Location = new System.Drawing.Point(0, 63);
+            this.pnlTEFileSubmenu.Location = new System.Drawing.Point(0, 136);
             this.pnlTEFileSubmenu.Name = "pnlTEFileSubmenu";
             this.pnlTEFileSubmenu.Size = new System.Drawing.Size(275, 319);
             this.pnlTEFileSubmenu.TabIndex = 3;
@@ -746,24 +733,24 @@
             this.btnTEFileCreateNewFileSubmenu.UseVisualStyleBackColor = false;
             this.btnTEFileCreateNewFileSubmenu.Click += new System.EventHandler(this.btnTEFileCreateNewFileSubmenu_Click);
             // 
-            // btnTextEditorOpenFileSubmenu
+            // btnTEFileSubmenu
             // 
-            this.btnTextEditorOpenFileSubmenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnTextEditorOpenFileSubmenu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnTextEditorOpenFileSubmenu.FlatAppearance.BorderSize = 0;
-            this.btnTextEditorOpenFileSubmenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTextEditorOpenFileSubmenu.Font = new System.Drawing.Font("MS Reference Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTextEditorOpenFileSubmenu.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.btnTextEditorOpenFileSubmenu.Location = new System.Drawing.Point(0, 0);
-            this.btnTextEditorOpenFileSubmenu.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnTextEditorOpenFileSubmenu.Name = "btnTextEditorOpenFileSubmenu";
-            this.btnTextEditorOpenFileSubmenu.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnTextEditorOpenFileSubmenu.Size = new System.Drawing.Size(275, 63);
-            this.btnTextEditorOpenFileSubmenu.TabIndex = 0;
-            this.btnTextEditorOpenFileSubmenu.Text = "File";
-            this.btnTextEditorOpenFileSubmenu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTextEditorOpenFileSubmenu.UseVisualStyleBackColor = false;
-            this.btnTextEditorOpenFileSubmenu.Click += new System.EventHandler(this.btnTEFileSubmenu_Click);
+            this.btnTEFileSubmenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnTEFileSubmenu.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnTEFileSubmenu.FlatAppearance.BorderSize = 0;
+            this.btnTEFileSubmenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTEFileSubmenu.Font = new System.Drawing.Font("MS Reference Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTEFileSubmenu.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btnTEFileSubmenu.Location = new System.Drawing.Point(0, 73);
+            this.btnTEFileSubmenu.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnTEFileSubmenu.Name = "btnTEFileSubmenu";
+            this.btnTEFileSubmenu.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+            this.btnTEFileSubmenu.Size = new System.Drawing.Size(275, 63);
+            this.btnTEFileSubmenu.TabIndex = 0;
+            this.btnTEFileSubmenu.Text = "File";
+            this.btnTEFileSubmenu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTEFileSubmenu.UseVisualStyleBackColor = false;
+            this.btnTEFileSubmenu.Click += new System.EventHandler(this.btnTEFileSubmenu_Click);
             // 
             // btnTextEditorMenu
             // 
@@ -818,7 +805,6 @@
             this.pnlConfigurationMenu.ResumeLayout(false);
             this.pnlTaskManagementMenu.ResumeLayout(false);
             this.pnlToDoListMenu.ResumeLayout(false);
-            this.pnlTextEditorMenu.ResumeLayout(false);
             this.pnlTEDisplaySubmenu.ResumeLayout(false);
             this.pnlTEEditSubmenu.ResumeLayout(false);
             this.pnlTEFileSubmenu.ResumeLayout(false);
@@ -831,8 +817,7 @@
         private System.Windows.Forms.Panel pnlSideBar;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button btnTextEditorMenu;
-        private System.Windows.Forms.Panel pnlTextEditorMenu;
-        private System.Windows.Forms.Button btnTextEditorOpenFileSubmenu;
+        private System.Windows.Forms.Button btnTEFileSubmenu;
         private System.Windows.Forms.Panel pnlTaskManagementMenu;
         private System.Windows.Forms.Button btnTaskManagementCloseSubmenu;
         private System.Windows.Forms.Button btnTaskManagementSaveSubmenu;
