@@ -29,37 +29,48 @@ namespace ChukebloEditor.UI
         /// </summary>
         private void InitializeComponent()
         {
-            this.pnlTextEditorSideBar = new System.Windows.Forms.Panel();
+            this.pnlFileExplolerArea = new System.Windows.Forms.Panel();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.pnlConsoleArea = new System.Windows.Forms.Panel();
             this.pnlTextBoxArea = new System.Windows.Forms.Panel();
+            this.pnlFileTabArea = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // pnlTextEditorSideBar
+            // pnlFileExplolerArea
             // 
-            this.pnlTextEditorSideBar.AutoScroll = true;
-            this.pnlTextEditorSideBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.pnlTextEditorSideBar.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlTextEditorSideBar.Location = new System.Drawing.Point(0, 0);
-            this.pnlTextEditorSideBar.Name = "pnlTextEditorSideBar";
-            this.pnlTextEditorSideBar.Size = new System.Drawing.Size(249, 822);
-            this.pnlTextEditorSideBar.TabIndex = 0;
+            this.pnlFileExplolerArea.AutoScroll = true;
+            this.pnlFileExplolerArea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.pnlFileExplolerArea.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlFileExplolerArea.Location = new System.Drawing.Point(0, 0);
+            this.pnlFileExplolerArea.Name = "pnlFileExplolerArea";
+            this.pnlFileExplolerArea.Size = new System.Drawing.Size(206, 822);
+            this.pnlFileExplolerArea.TabIndex = 0;
             // 
             // pnlConsoleArea
             // 
+            this.pnlConsoleArea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.pnlConsoleArea.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlConsoleArea.Location = new System.Drawing.Point(249, 642);
+            this.pnlConsoleArea.Location = new System.Drawing.Point(206, 642);
             this.pnlConsoleArea.Name = "pnlConsoleArea";
-            this.pnlConsoleArea.Size = new System.Drawing.Size(1277, 180);
+            this.pnlConsoleArea.Size = new System.Drawing.Size(1320, 180);
             this.pnlConsoleArea.TabIndex = 1;
             // 
             // pnlTextBoxArea
             // 
             this.pnlTextBoxArea.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlTextBoxArea.Location = new System.Drawing.Point(249, 0);
+            this.pnlTextBoxArea.Location = new System.Drawing.Point(0, 0);
             this.pnlTextBoxArea.Name = "pnlTextBoxArea";
-            this.pnlTextBoxArea.Size = new System.Drawing.Size(1277, 642);
+            this.pnlTextBoxArea.Size = new System.Drawing.Size(1526, 822);
             this.pnlTextBoxArea.TabIndex = 2;
+            // 
+            // pnlFileTabArea
+            // 
+            this.pnlFileTabArea.BackColor = System.Drawing.Color.Lime;
+            this.pnlFileTabArea.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlFileTabArea.Location = new System.Drawing.Point(206, 0);
+            this.pnlFileTabArea.Name = "pnlFileTabArea";
+            this.pnlFileTabArea.Size = new System.Drawing.Size(1320, 35);
+            this.pnlFileTabArea.TabIndex = 3;
             // 
             // TextEditorForm
             // 
@@ -69,8 +80,9 @@ namespace ChukebloEditor.UI
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1526, 822);
             this.Controls.Add(this.pnlTextBoxArea);
+            this.Controls.Add(this.pnlFileTabArea);
             this.Controls.Add(this.pnlConsoleArea);
-            this.Controls.Add(this.pnlTextEditorSideBar);
+            this.Controls.Add(this.pnlFileExplolerArea);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "TextEditorForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -81,10 +93,11 @@ namespace ChukebloEditor.UI
 
         #endregion
 
-        private System.Windows.Forms.Panel pnlTextEditorSideBar;
+        private System.Windows.Forms.Panel pnlFileExplolerArea;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Panel pnlConsoleArea;
         private System.Windows.Forms.Panel pnlTextBoxArea;
+        private System.Windows.Forms.Panel pnlFileTabArea;
     }
 }
 
