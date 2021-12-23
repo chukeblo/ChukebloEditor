@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32002.261
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChukebloEditor", "ChukebloEditor\ChukebloEditor.csproj", "{333498FD-DAB2-42C8-B8FB-DE9D3CD3ECD2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChukebloEditor", "ChukebloEditor\ChukebloEditor.csproj", "{133F1122-12F7-4C0B-953F-9305B7189EB7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{333498FD-DAB2-42C8-B8FB-DE9D3CD3ECD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{333498FD-DAB2-42C8-B8FB-DE9D3CD3ECD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{333498FD-DAB2-42C8-B8FB-DE9D3CD3ECD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{333498FD-DAB2-42C8-B8FB-DE9D3CD3ECD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{133F1122-12F7-4C0B-953F-9305B7189EB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{133F1122-12F7-4C0B-953F-9305B7189EB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{133F1122-12F7-4C0B-953F-9305B7189EB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{133F1122-12F7-4C0B-953F-9305B7189EB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {AE18BF90-0BDE-4895-8C4F-BF7E59CC547C}
+		SolutionGuid = {A3BBCC80-797C-4E9D-B536-3AA74EA7EB10}
 	EndGlobalSection
 EndGlobal
