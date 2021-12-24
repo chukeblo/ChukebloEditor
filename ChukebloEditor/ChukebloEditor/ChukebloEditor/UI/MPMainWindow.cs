@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChukebloEditor.Command;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -7,6 +8,7 @@ namespace ChukebloEditor.UI
     delegate void ShowTargetSubmenuDelegate();
     public partial class MPMainWindow : Form
     {
+        private CommandInvoker commandInvoker = CommandInvoker.Instance;
         private ToolMenuType currentToolMenuType = ToolMenuType.Idle;
         private Form currentlyActiveForm = null;
 
