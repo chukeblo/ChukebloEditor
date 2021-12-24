@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{333498FD-DAB2-42C8-B8FB-DE9D3CD3ECD2}</ProjectGuid>
+    <ProjectGuid>{133F1122-12F7-4C0B-953F-9305B7189EB7}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>ChukebloEditor</RootNamespace>
     <AssemblyName>ChukebloEditor</AssemblyName>
@@ -46,38 +46,61 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandReceiver\FindCommandReceiver.cs" />
-    <Compile Include="Command\FindCommand.cs" />
-    <Compile Include="Command\FindCompletedEventArgs.cs" />
-    <Compile Include="Command\SearchParam.cs" />
-    <Compile Include="UI\ChukebloEditorForm.cs">
+    <Compile Include="BindingModel\BindingModel.cs" />
+    <Compile Include="BindingModel\PropertyNameConstants.cs" />
+    <Compile Include="BindingModel\TextBoxBindingModel.cs" />
+    <Compile Include="UI\TextEditorComponentsRelation.cs" />
+    <Compile Include="UI\MPMainWindow.TextEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\ChukebloEditorForm.Designer.cs">
-      <DependentUpon>ChukebloEditorForm.cs</DependentUpon>
+    <Compile Include="UI\TextEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\TextEditorForm.Designer.cs">
+      <DependentUpon>TextEditorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Command\CommandFactory.cs" />
     <Compile Include="Command\CommandInvoker.cs" />
     <Compile Include="Command\CommandType.cs" />
+    <Compile Include="UI\DialogConstants.cs" />
+    <Compile Include="Command\FileIOParam.cs" />
+    <Compile Include="Command\FindCommand.cs" />
+    <Compile Include="CommandReceiver\FindCommandReceiver.cs" />
+    <Compile Include="Command\FindCompletedEventArgs.cs" />
     <Compile Include="Command\ICommand.cs" />
     <Compile Include="CommandReceiver\ICommandReceiver.cs" />
+    <Compile Include="UI\MessageBoxConstants.cs" />
+    <Compile Include="UI\MPMainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MPMainWindow.Designer.cs">
+      <DependentUpon>MPMainWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CommandReceiver\ReceiverFactory.cs" />
     <Compile Include="CommandReceiver\ReceiverType.cs" />
     <Compile Include="Command\SaveCommand.cs" />
     <Compile Include="CommandReceiver\SaveCommandReceiver.cs" />
-    <Compile Include="Command\FileIOParam.cs" />
-    <Compile Include="UI\DialogConstants.cs" />
-    <Compile Include="UI\MessageBoxConstants.cs" />
+    <Compile Include="Command\SearchParam.cs" />
     <Compile Include="UI\SearchWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\SearchWindow.Designer.cs">
+    <Compile Include="UI\SearchWindow.designer.cs">
       <DependentUpon>SearchWindow.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="UI\ChukebloEditorForm.resx">
-      <DependentUpon>ChukebloEditorForm.cs</DependentUpon>
+    <Compile Include="UI\TextForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\TextForm.Designer.cs">
+      <DependentUpon>TextForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ToolMenuType.cs" />
+    <EmbeddedResource Include="UI\TextEditorForm.resx">
+      <DependentUpon>TextEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MPMainWindow.resx">
+      <DependentUpon>MPMainWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -90,6 +113,9 @@
     </Compile>
     <EmbeddedResource Include="UI\SearchWindow.resx">
       <DependentUpon>SearchWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\TextForm.resx">
+      <DependentUpon>TextForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

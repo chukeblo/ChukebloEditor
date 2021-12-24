@@ -6,13 +6,26 @@ namespace ChukebloEditor.Command
 {
     public class CommandInvoker
     {
+        private static CommandInvoker instance = null;
         private Queue<ICommand> _commands;
         private CancellationTokenSource _cancellationTokenSource;
 
-        public CommandInvoker()
+        private CommandInvoker()
         {
             _commands = new Queue<ICommand>();
             _cancellationTokenSource = null;
+        }
+
+        public static CommandInvoker Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new CommandInvoker();
+                }
+                return instance;
+            }
         }
 
         public void AddCommand(ICommand command)

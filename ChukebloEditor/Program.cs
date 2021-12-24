@@ -14,7 +14,7 @@ namespace ChukebloEditor
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ChukebloEditorForm());
+            Application.Run(new MPMainWindow());
         }
     }
 }
