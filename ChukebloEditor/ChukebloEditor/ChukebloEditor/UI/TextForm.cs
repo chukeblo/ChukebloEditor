@@ -10,9 +10,23 @@ namespace ChukebloEditor.UI
         public TextForm(TextBoxBindingModel textBoxBindingModel)
         {
             InitializeComponent();
-            textBox.DataBindings.Add(PropertyNameConstants.Text,
-                textBoxBindingModel, PropertyNameConstants.Text);
             this.textBoxBindingModel = textBoxBindingModel;
+            BindDataToTextBox();
+        }
+
+        private void BindDataToTextBox()
+        {
+            this.textBox.DataBindings.Add(PropertyNameConstants.Text,
+                this.textBoxBindingModel, PropertyNameConstants.Text);
+            this.textBox.DataBindings.Add(PropertyNameConstants.SelectionStart,
+                this.textBoxBindingModel, PropertyNameConstants.SelectionStart);
+            this.textBox.DataBindings.Add(PropertyNameConstants.SelectionLength,
+                this.textBoxBindingModel, PropertyNameConstants.SelectionLength);
+            this.textBox.DataBindings.Add(PropertyNameConstants.SelectedText,
+                this.textBoxBindingModel, PropertyNameConstants.SelectedText);
+            this.textBox.DataBindings.Add(PropertyNameConstants.SelectionBackColor,
+                this.textBoxBindingModel, PropertyNameConstants.SelectionBackColor);
+
         }
     }
 }
