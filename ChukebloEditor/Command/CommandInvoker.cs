@@ -7,6 +7,7 @@ namespace ChukebloEditor.Command
     public class CommandInvoker
     {
         private static CommandInvoker instance = null;
+        private bool isExcecuting = false;
         private Queue<ICommand> _commands;
         private CancellationTokenSource _cancellationTokenSource;
 
@@ -33,35 +34,19 @@ namespace ChukebloEditor.Command
             _commands.Enqueue(command);
         }
 
-        public void Run()
+        private void Execute()
         {
-            Execute();
-        }
-
-        public Task<bool> Execute()
-        {
-            var taskCompletionSource = new TaskCompletionSource<bool>();
-            _cancellationTokenSource = new CancellationTokenSource();
-            var cancellationToken = _cancellationTokenSource.Token;
-
-            var task = Task.Run(() =>
+            isExcecuting = true;
+            while (true)
             {
-                while (true)
+                if (_commands.Count == 0)
                 {
-                    if (cancellationToken.IsCancellationRequested)
-                    {
-                        break;
-                    }
-                    if (_commands.Count == 0)
-                    {
-                        continue;
-                    }
-                    var command = _commands.Dequeue();
-                    command.Execute();
+                    break;
                 }
-            }, cancellationToken);
-
-            return taskCompletionSource.Task;
+                var command = _commands.Dequeue();
+                command.Execute();
+            }
+            isExcecuting = false;
         }
 
         public void Stop()

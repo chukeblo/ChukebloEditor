@@ -92,7 +92,8 @@ namespace ChukebloEditor.UI
             switch (result)
             {
                 case DialogSucceeded<string> success:
-                    var command = CommandFactory.GenerateCommand(CommandType.)
+                    var param = new FileIOParam(success.Result, )
+                    var command = CommandFactory.GenerateCommand(CommandType.Open);
                     commandInvoker.AddCommand();
                     break;
             }
