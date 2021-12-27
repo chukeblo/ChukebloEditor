@@ -10,6 +10,9 @@ namespace ChukebloEditor.Command
             ICommandReceiver receiver;
             switch (type)
             {
+                case CommandType.Open:
+                    receiver = ReceiverFactory.GenerateReceiver(ReceiverType.Open, parameter);
+                    return new OpenCommand(receiver);
                 case CommandType.Save:
                     receiver = ReceiverFactory.GenerateReceiver(ReceiverType.Save, parameter);
                     return new SaveCommand(receiver);

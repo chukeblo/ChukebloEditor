@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChukebloEditor.Command;
+using System;
 using System.Windows.Forms;
 
 namespace ChukebloEditor.UI
@@ -83,9 +84,18 @@ namespace ChukebloEditor.UI
 
         private void btnTEFileOpenFileSubmenu_Click(object sender, EventArgs e)
         {
-            // some operation code
-            // ..
-
+            var param = new OpenFileDialogParam(
+                DialogConstants.OpenFileTitle,
+                DialogConstants.CDriveInitialDirectory,
+                DialogConstants.TextFileFilter);
+            var result = this.AskUserWithDialog(param);
+            switch (result)
+            {
+                case DialogSucceeded<string> success:
+                    var command = CommandFactory.GenerateCommand(CommandType.)
+                    commandInvoker.AddCommand();
+                    break;
+            }
             HideTESubmenuPanels();
         }
 
