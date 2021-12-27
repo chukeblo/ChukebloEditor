@@ -144,7 +144,6 @@ namespace ChukebloEditor.UI
 
         private DialogResult<string> AskUserWithDialog(DialogParamBase param)
         {
-            DialogResult<string> result;
             switch (param)
             {
                 case OpenFileDialogParam openFileDialogParam:

@@ -92,9 +92,9 @@ namespace ChukebloEditor.UI
             switch (result)
             {
                 case DialogSucceeded<string> success:
-                    var param = new FileIOParam(success.Result, )
-                    var command = CommandFactory.GenerateCommand(CommandType.Open);
-                    commandInvoker.AddCommand();
+                    var fileIOParam = new FileIOParam(success.Result, string.Empty);
+                    var command = CommandFactory.GenerateCommand(CommandType.Open, fileIOParam);
+                    commandInvoker.AddCommand(command);
                     break;
             }
             HideTESubmenuPanels();
