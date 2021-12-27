@@ -2,6 +2,7 @@
 {
     public enum ReceiverType
     {
+        Open,
         Save,
         Find
     }

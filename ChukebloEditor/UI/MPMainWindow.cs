@@ -108,7 +108,7 @@ namespace ChukebloEditor.UI
         {
             var messageResult = MessageBox.Show(MessageBoxConstants.LeaveMessage,
                 MessageBoxConstants.ExitCaption, MessageBoxButtons.YesNo);
-            if (messageResult == DialogResult.No)
+            if (messageResult == System.Windows.Forms.DialogResult.No)
             {
                 return false;
             }
@@ -139,6 +139,37 @@ namespace ChukebloEditor.UI
             }
             list.Push(btnTEDisplaySubmenu);
             return list;
+        }
+
+        private DialogResult<string> AskUserWithDialog(DialogParamBase param)
+        {
+            DialogResult<string> result;
+            switch (param)
+            {
+                case OpenFileDialogParam openFileDialogParam:
+                    return GetOpenFileName(openFileDialogParam);
+                default:
+                    throw new InvalidOperationException("not supported dialog param");
+            }
+        }
+
+        private DialogResult<string> GetOpenFileName(OpenFileDialogParam param)
+        {
+            var openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = param.Title;
+            openFileDialog.InitialDirectory = param.InitialDirectory;
+            openFileDialog.Filter = param.Filter;
+            var dialogResult = openFileDialog.ShowDialog();
+            switch (dialogResult)
+            {
+                case System.Windows.Forms.DialogResult.OK:
+                    return new DialogSucceeded<string>(openFileDialog.FileName);
+                case System.Windows.Forms.DialogResult.Cancel:
+                    return new DialogFailed<string>("dialog result=cancel");
+                default:
+                    throw new InvalidOperationException("not'supported dialog result");
+            }
+
         }
 
         #region Event Listeners

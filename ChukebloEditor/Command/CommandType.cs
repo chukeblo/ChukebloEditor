@@ -2,6 +2,7 @@
 {
     public enum CommandType
     {
+        Open,
         Save,
         Find
     }

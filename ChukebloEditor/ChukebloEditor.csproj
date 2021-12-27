@@ -49,6 +49,13 @@
     <Compile Include="BindingModel\BindingModel.cs" />
     <Compile Include="BindingModel\PropertyNameConstants.cs" />
     <Compile Include="BindingModel\TextBoxBindingModel.cs" />
+    <Compile Include="CommandReceiver\OpenCommandReceiver.cs" />
+    <Compile Include="Command\OpenCommand.cs" />
+    <Compile Include="UI\Dialog\DialogFailed.cs" />
+    <Compile Include="UI\Dialog\DialogParamBase.cs" />
+    <Compile Include="UI\Dialog\DialogResult.cs" />
+    <Compile Include="UI\Dialog\DialogSucceeded.cs" />
+    <Compile Include="UI\Dialog\OpenFileDialogParam.cs" />
     <Compile Include="UI\TextEditorComponentsRelation.cs" />
     <Compile Include="UI\MPMainWindow.TextEditor.cs">
       <SubType>Form</SubType>
@@ -62,7 +69,7 @@
     <Compile Include="Command\CommandFactory.cs" />
     <Compile Include="Command\CommandInvoker.cs" />
     <Compile Include="Command\CommandType.cs" />
-    <Compile Include="UI\DialogConstants.cs" />
+    <Compile Include="UI\Dialog\DialogConstants.cs" />
     <Compile Include="Command\FileIOParam.cs" />
     <Compile Include="Command\FindCommand.cs" />
     <Compile Include="CommandReceiver\FindCommandReceiver.cs" />
