@@ -32,6 +32,10 @@ namespace ChukebloEditor.Command
         public void AddCommand(ICommand command)
         {
             _commands.Enqueue(command);
+            if (!isExcecuting)
+            {
+                Execute();
+            }
         }
 
         private void Execute()

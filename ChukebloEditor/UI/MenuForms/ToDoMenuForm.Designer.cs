@@ -1,7 +1,7 @@
 ﻿
-namespace ChukebloEditor.UI
+namespace ChukebloEditor.UI.MenuForms
 {
-    partial class TextForm
+    partial class ToDoMenuForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,36 +29,35 @@ namespace ChukebloEditor.UI
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox = new System.Windows.Forms.RichTextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // textBox
+            // label1
             // 
-            this.textBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.textBox.Location = new System.Drawing.Point(0, 0);
-            this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(838, 541);
-            this.textBox.TabIndex = 0;
-            this.textBox.Text = "";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("MS Reference Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(50, 55);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(85, 30);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "label1";
             // 
-            // TextForm
+            // ToDoMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(838, 541);
-            this.Controls.Add(this.textBox);
+            this.ClientSize = new System.Drawing.Size(1384, 798);
+            this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "TextForm";
-            this.Text = "TextForm";
+            this.Name = "ToDoMenuForm";
+            this.Text = "ToDoMenuForm";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox textBox;
+        private System.Windows.Forms.Label label1;
     }
 }
