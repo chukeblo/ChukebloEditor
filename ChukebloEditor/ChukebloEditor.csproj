@@ -51,20 +51,23 @@
     <Compile Include="BindingModel\TextBoxBindingModel.cs" />
     <Compile Include="CommandReceiver\OpenCommandReceiver.cs" />
     <Compile Include="Command\OpenCommand.cs" />
+    <Compile Include="UI\CustomFormBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\Dialog\DialogFailed.cs" />
     <Compile Include="UI\Dialog\DialogParamBase.cs" />
     <Compile Include="UI\Dialog\DialogResult.cs" />
     <Compile Include="UI\Dialog\DialogSucceeded.cs" />
     <Compile Include="UI\Dialog\OpenFileDialogParam.cs" />
     <Compile Include="UI\TextEditorComponentsRelation.cs" />
-    <Compile Include="UI\MPMainWindow.TextEditor.cs">
+    <Compile Include="UI\MPMainWindow.WikiEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\TextEditorForm.cs">
+    <Compile Include="UI\WikiEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\TextEditorForm.Designer.cs">
-      <DependentUpon>TextEditorForm.cs</DependentUpon>
+    <Compile Include="UI\WikiEditorForm.Designer.cs">
+      <DependentUpon>WikiEditorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Command\CommandFactory.cs" />
     <Compile Include="Command\CommandInvoker.cs" />
@@ -103,8 +106,8 @@
       <DependentUpon>TextForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\ToolMenuType.cs" />
-    <EmbeddedResource Include="UI\TextEditorForm.resx">
-      <DependentUpon>TextEditorForm.cs</DependentUpon>
+    <EmbeddedResource Include="UI\WikiEditorForm.resx">
+      <DependentUpon>WikiEditorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\MPMainWindow.resx">
       <DependentUpon>MPMainWindow.cs</DependentUpon>

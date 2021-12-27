@@ -8,6 +8,7 @@ namespace ChukebloEditor.UI
     delegate void ShowTargetSubmenuDelegate();
     public partial class MPMainWindow : Form
     {
+        private Dictionary<ToolMenuType, Form> forms = new Dictionary<ToolMenuType, Form>();
         private CommandInvoker commandInvoker = CommandInvoker.Instance;
         private ToolMenuType currentToolMenuType = ToolMenuType.Idle;
         private Form currentlyActiveForm = null;
@@ -176,7 +177,7 @@ namespace ChukebloEditor.UI
         #region Menu Button Click Events
         private void btnTextEditorMenu_Click(object sender, EventArgs e)
         {
-            Form nextForm = (currentToolMenuType == ToolMenuType.TextEditor) ? null : new TextEditorForm();
+            Form nextForm = (currentToolMenuType == ToolMenuType.TextEditor) ? null : new WikiEditorForm();
             SwitchActiveBodyMainForm(ToolMenuType.TextEditor, nextForm);
         }
 

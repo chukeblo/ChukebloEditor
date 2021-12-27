@@ -4,11 +4,11 @@ using System.Windows.Forms;
 
 namespace ChukebloEditor.UI
 {
-    public partial class TextEditorForm : Form
+    public partial class WikiEditorForm : Form
     {
         private List<TextEditorComponentsRelation> relations = new List<TextEditorComponentsRelation>();
 
-        public TextEditorForm()
+        public WikiEditorForm()
         {
             InitializeComponent();
             InitializePanels();

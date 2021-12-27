@@ -13,7 +13,7 @@ namespace ChukebloEditor.Command
 
         public void Execute()
         {
-            throw new System.NotImplementedException();
+            receiver.ReceiveCommand();
         }
     }
 }
