@@ -79,6 +79,7 @@
     <Compile Include="BindingModel\BindingModelBase.cs" />
     <Compile Include="BindingModel\PropertyNameConstants.cs" />
     <Compile Include="BindingModel\TextBoxBindingModel.cs" />
+    <Compile Include="BindingModel\ToDoEditorBindingModel.cs" />
     <Compile Include="BindingModel\WikiEditorBindingModel.cs" />
     <Compile Include="CommandReceiver\OpenCommandReceiver.cs" />
     <Compile Include="Command\OpenCommand.cs" />
@@ -93,6 +94,12 @@
     </Compile>
     <Compile Include="UI\MenuForms\HomeMenuForm.Designer.cs">
       <DependentUpon>HomeMenuForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MenuForms\ToDoEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MenuForms\ToDoEditorForm.Designer.cs">
+      <DependentUpon>ToDoEditorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\MenuForms\ToDoMenuForm.cs">
       <SubType>Form</SubType>
@@ -139,6 +146,9 @@
     <Compile Include="UI\FormType.cs" />
     <EmbeddedResource Include="UI\MenuForms\HomeMenuForm.resx">
       <DependentUpon>HomeMenuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MenuForms\ToDoEditorForm.resx">
+      <DependentUpon>ToDoEditorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\MenuForms\ToDoMenuForm.resx">
       <DependentUpon>ToDoMenuForm.cs</DependentUpon>
