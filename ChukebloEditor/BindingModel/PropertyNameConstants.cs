@@ -24,6 +24,14 @@
             public static readonly string Memo = "Memo";
         }
 
+        public static class ProjectsEditor
+        {
+            public static readonly string Title = "Title";
+            public static readonly string Tag = "Tag";
+            public static readonly string Wiki = "Wiki";
+            public static readonly string Memo = "Memo";
+        }
+
         public static class WikiEditor
         {
             public static readonly string Title = "Title";
