@@ -28,6 +28,11 @@ namespace ChukebloEditor.UI
                     // ユーザーがウィンドウを閉じない選択をした場合は何もしない
                     return;
                 }
+                if (currentFormType == nextType)
+                {
+                    nextType = FormType.Home;
+                }
+                DeactivateBodyMainForm();
             }
 
             Form nextForm;
@@ -37,7 +42,7 @@ namespace ChukebloEditor.UI
                     nextForm = new HomeMenuForm();
                     break;
                 case FormType.Wiki:
-                    nextForm = new WikiEditorForm();
+                    nextForm = new WikiMenuForm();
                     break;
                 default:
                     throw new InvalidOperationException("not supported form type");

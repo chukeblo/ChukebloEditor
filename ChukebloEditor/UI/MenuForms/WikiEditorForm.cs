@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Windows.Forms;
 
 namespace ChukebloEditor.UI
@@ -58,9 +57,7 @@ namespace ChukebloEditor.UI
                 var deserializedJsonDictionary = JsonSerializer.Deserialize<Dictionary<string, object>>(
                     File.ReadAllText(dialog.FileName));
                 ClearInputText();
-                this.wikiEditorBindingModel.Title = deserializedJsonDictionary["title"].ToString();
-                this.wikiEditorBindingModel.Tag = deserializedJsonDictionary["tag"].ToString();
-                this.wikiEditorBindingModel.Body = deserializedJsonDictionary["body"].ToString();
+                this.Close();
             }
         }
 
