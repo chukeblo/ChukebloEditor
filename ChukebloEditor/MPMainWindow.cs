@@ -44,6 +44,9 @@ namespace ChukebloEditor.UI
                 case FormType.ToDo:
                     nextForm = new ToDoMenuForm();
                     break;
+                case FormType.Tasks:
+                    nextForm = new TasksMenuForm();
+                    break;
                 case FormType.Wiki:
                     nextForm = new WikiMenuForm();
                     break;
@@ -132,7 +135,7 @@ namespace ChukebloEditor.UI
 
         private void btnTasksMenu_Click(object sender, EventArgs e)
         {
-
+            SwitchActiveBodyMainForm(FormType.Tasks);
         }
 
         private void btnProjectsMenu_Click(object sender, EventArgs e)
@@ -152,7 +155,7 @@ namespace ChukebloEditor.UI
 
         private void btnTopBarTasks_Click(object sender, EventArgs e)
         {
-
+            SwitchActiveBodyMainForm(FormType.Tasks);
         }
 
         private void btnTopBarProjects_Click(object sender, EventArgs e)

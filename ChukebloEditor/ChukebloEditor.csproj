@@ -78,6 +78,7 @@
   <ItemGroup>
     <Compile Include="BindingModel\BindingModelBase.cs" />
     <Compile Include="BindingModel\PropertyNameConstants.cs" />
+    <Compile Include="BindingModel\TasksEditorBindingModel.cs" />
     <Compile Include="BindingModel\TextBoxBindingModel.cs" />
     <Compile Include="BindingModel\ToDoEditorBindingModel.cs" />
     <Compile Include="BindingModel\WikiEditorBindingModel.cs" />
@@ -94,6 +95,18 @@
     </Compile>
     <Compile Include="UI\MenuForms\HomeMenuForm.Designer.cs">
       <DependentUpon>HomeMenuForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MenuForms\TasksEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MenuForms\TasksEditorForm.Designer.cs">
+      <DependentUpon>TasksEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MenuForms\TasksMenuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MenuForms\TasksMenuForm.Designer.cs">
+      <DependentUpon>TasksMenuForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\MenuForms\ToDoEditorForm.cs">
       <SubType>Form</SubType>
@@ -146,6 +159,12 @@
     <Compile Include="UI\FormType.cs" />
     <EmbeddedResource Include="UI\MenuForms\HomeMenuForm.resx">
       <DependentUpon>HomeMenuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MenuForms\TasksEditorForm.resx">
+      <DependentUpon>TasksEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MenuForms\TasksMenuForm.resx">
+      <DependentUpon>TasksMenuForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\MenuForms\ToDoEditorForm.resx">
       <DependentUpon>ToDoEditorForm.cs</DependentUpon>
