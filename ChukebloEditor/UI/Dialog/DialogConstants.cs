@@ -2,15 +2,25 @@
 {
     public static class DialogConstants
     {
-        // 初期ディレクトリ
-        public static readonly string CDriveInitialDirectory = "c:\\";
+        public static class InitialDirectory
+        {
+            public static readonly string CDrive = "c:\\";
+            public static readonly string WorkSpaceFolder = "c:\\.ChukebloTaskManager\\";
+        }
 
-        // タイトル
-        public static readonly string CreateNewFileTitle = "新規ファイル作成";
-        public static readonly string OpenFileTitle = "開く";
-        public static readonly string SaveAsNewFileTitle = "新規ファイル保存";
+        public static class Title
+        {
+            public static readonly string CreateNewFile = "新規ファイル作成";
+            public static readonly string OpenFile = "開く";
+            public static readonly string SaveAsNewFile = "新規ファイル保存";
+            public static readonly string SaveFile = "保存";
+        }
 
-        // フィルター
-        public static readonly string TextFileFilter = "text files (*.txt)|*.txt";
+        public static class Filter
+        {
+            public static readonly string Text = "text files (*.txt)|*.txt";
+            public static readonly string MarkDown = "markdown files (*.md)|*.md";
+            public static readonly string Json = "json files (*.json)|*.json";
+        }
     }
 }
