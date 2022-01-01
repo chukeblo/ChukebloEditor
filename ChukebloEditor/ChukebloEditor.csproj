@@ -85,12 +85,21 @@
     <Compile Include="BindingModel\WikiEditorBindingModel.cs" />
     <Compile Include="CommandReceiver\OpenCommandReceiver.cs" />
     <Compile Include="Command\OpenCommand.cs" />
+    <Compile Include="ManagementItemData\ManagementItemDataBase.cs" />
+    <Compile Include="ManagementItemData\ToDoItemData.cs" />
     <Compile Include="UI\Dialog\DialogFailed.cs" />
     <Compile Include="UI\Dialog\DialogParamBase.cs" />
     <Compile Include="UI\Dialog\DialogResult.cs" />
     <Compile Include="UI\Dialog\DialogSucceeded.cs" />
     <Compile Include="UI\Dialog\OpenFileDialogParam.cs" />
     <Compile Include="UI\EventType.cs" />
+    <Compile Include="UI\ManagementItemForms\CloseStatus.cs" />
+    <Compile Include="UI\ManagementItemForms\ToDoItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ManagementItemForms\ToDoItemForm.Designer.cs">
+      <DependentUpon>ToDoItemForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\MenuForms\HomeMenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +179,9 @@
     <Compile Include="CommandReceiver\SaveCommandReceiver.cs" />
     <Compile Include="Command\SearchParam.cs" />
     <Compile Include="UI\FormType.cs" />
+    <EmbeddedResource Include="UI\ManagementItemForms\ToDoItemForm.resx">
+      <DependentUpon>ToDoItemForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\MenuForms\HomeMenuForm.resx">
       <DependentUpon>HomeMenuForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -205,6 +217,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="UI\MenuForms\WikiMenuForm.resx">
       <DependentUpon>WikiMenuForm.cs</DependentUpon>
@@ -222,6 +235,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trashbox.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Text.Json.6.0.1\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.1\build\System.Text.Json.targets')" />

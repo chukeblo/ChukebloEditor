@@ -14,7 +14,7 @@ namespace ChukebloEditor.UI.MenuForms
         private void btnCreateNewTask_Click(object sender, System.EventArgs e)
         {
             this.pnlTasksFormWindowRange.Hide();
-            this.editorForm = new ToDoEditorForm();
+            this.editorForm = new TasksEditorForm();
             this.editorForm.TopLevel = false;
             this.editorForm.Dock = DockStyle.Fill;
             this.editorForm.FormBorderStyle = FormBorderStyle.None;

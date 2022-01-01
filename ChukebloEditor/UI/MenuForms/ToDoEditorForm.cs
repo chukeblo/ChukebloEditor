@@ -1,6 +1,6 @@
 ﻿using ChukebloEditor.BindingModel;
+using ChukebloEditor.ManagementItemData;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 using System.Windows.Forms;
@@ -11,10 +11,23 @@ namespace ChukebloEditor.UI.MenuForms
     {
         private ToDoEditorBindingModel toDoEditorBindingModel = new ToDoEditorBindingModel();
         private static readonly string ToDoFolderPath = $"c:\\Users\\{Environment.UserName}\\.chukebloeditor\\todo\\";
-        public ToDoEditorForm()
+        public ToDoEditorForm(ToDoItemData data)
         {
             InitializeComponent();
             AddDataBindings();
+            InitializeTextData(data);
+        }
+
+        private void InitializeTextData(ToDoItemData data)
+        {
+            if (data == null)
+            {
+                return;
+            }
+            this.toDoEditorBindingModel.Title = data.Title;
+            this.toDoEditorBindingModel.Tag = data.Title;
+            this.toDoEditorBindingModel.Wiki = data.Wiki;
+            this.toDoEditorBindingModel.Memo = data.Memo;
         }
 
         private void AddDataBindings()
@@ -35,14 +48,12 @@ namespace ChukebloEditor.UI.MenuForms
             {
                 return;
             }
-            var jsonDictionary = new Dictionary<string, object>
-            {
-                { "title", this.toDoEditorBindingModel.Title },
-                { "tag", this.toDoEditorBindingModel.Tag },
-                { "wiki", this.toDoEditorBindingModel.Wiki },
-                { "memo", this.toDoEditorBindingModel.Memo }
-            };
-            var json = JsonSerializer.Serialize(jsonDictionary);
+            var toDoItemData = new ToDoItemData(
+                this.toDoEditorBindingModel.Title,
+                this.toDoEditorBindingModel.Tag,
+                this.toDoEditorBindingModel.Wiki,
+                this.toDoEditorBindingModel.Memo);
+            var json = JsonSerializer.Serialize(toDoItemData);
             var filePath = $"{ToDoFolderPath}{this.toDoEditorBindingModel.Title}.json";
             File.WriteAllText(filePath, json);
             this.Close();
